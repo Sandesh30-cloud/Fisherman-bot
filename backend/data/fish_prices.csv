@@ -1,0 +1,11 @@
+species,species_hi,species_mr,base_price,unit,mandi,min,max
+Rohu,रोहू,रोहू,210,kg,National Avg,170,260
+Catla,कतला,कटला,195,kg,National Avg,160,240
+Mrigal,मृगल,मृगळ,175,kg,National Avg,140,210
+Tilapia,तिलापिया,तिलापिया,145,kg,National Avg,110,180
+Pangasius,पंगेशियस,पंगेशियस,125,kg,National Avg,95,160
+Common Carp,कॉमन कार्प,कॉमन कार्प,160,kg,National Avg,130,200
+Grass Carp,ग्रास कार्प,गवत कार्प,165,kg,National Avg,130,210
+Prawn (Tiger),झींगा (टाइगर),कोळंबी (टायगर),480,kg,National Avg,380,620
+Singhi (Catfish),सिंघी,सिंगी,320,kg,National Avg,260,400
+Magur (Catfish),मागुर,मगूर,290,kg,National Avg,230,360
