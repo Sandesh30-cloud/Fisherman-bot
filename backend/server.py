@@ -5,6 +5,7 @@ endpoints per sub-bot.
 """
 from __future__ import annotations
 
+import asyncio
 import logging
 import os
 import uuid
@@ -30,9 +31,21 @@ from bots.translate import normalize_lang, t
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / ".env")
 
-mongo_url = os.environ["MONGO_URL"]
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ["DB_NAME"]]
+mongo_url = os.environ.get("MONGO_URL")
+mongo_db_name = os.environ.get("DB_NAME")
+mongo_write_timeout_s = float(os.environ.get("MONGO_WRITE_TIMEOUT_SECONDS", "1.0"))
+client: Optional[AsyncIOMotorClient] = None
+db = None
+
+if mongo_url and mongo_db_name:
+    client = AsyncIOMotorClient(
+        mongo_url,
+        # Keep DB outages from blocking chat replies.
+        serverSelectionTimeoutMS=1000,
+        connectTimeoutMS=1000,
+        socketTimeoutMS=1000,
+    )
+    db = client[mongo_db_name]
 
 logging.basicConfig(
     level=logging.INFO,
@@ -210,21 +223,25 @@ async def chat(req: ChatRequest):
     msg_id = str(uuid.uuid4())
 
     # Persist to Mongo (best-effort).
-    try:
-        await db.chat_messages.insert_one(
-            {
-                "id": msg_id,
-                "session_id": session_id,
-                "message": message,
-                "intent": intent,
-                "language": language,
-                "reply": reply,
-                "card_type": (card or {}).get("type"),
-                "timestamp": now,
-            }
-        )
-    except Exception as exc:  # pragma: no cover
-        logger.warning(f"Chat persistence failed: {exc}")
+    if db is not None:
+        try:
+            await asyncio.wait_for(
+                db.chat_messages.insert_one(
+                    {
+                        "id": msg_id,
+                        "session_id": session_id,
+                        "message": message,
+                        "intent": intent,
+                        "language": language,
+                        "reply": reply,
+                        "card_type": (card or {}).get("type"),
+                        "timestamp": now,
+                    }
+                ),
+                timeout=mongo_write_timeout_s,
+            )
+        except Exception as exc:  # pragma: no cover
+            logger.warning(f"Chat persistence failed: {exc}")
 
     return ChatResponse(
         id=msg_id,
@@ -239,6 +256,8 @@ async def chat(req: ChatRequest):
 
 @api_router.get("/chat/history/{session_id}")
 async def chat_history(session_id: str, limit: int = 50):
+    if db is None:
+        return {"ok": False, "session_id": session_id, "messages": []}
     docs = (
         await db.chat_messages.find(
             {"session_id": session_id}, {"_id": 0}
@@ -264,4 +283,5 @@ logger.info("Matsyavan API ready")
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client is not None:
+        client.close()
