@@ -37,3 +37,12 @@ export async function listFaq(language = "en") {
   const { data } = await client.get("/faq", { params: { language } });
   return data;
 }
+
+export function fetchYourEndpoint() {
+  return fetch(`${API}/your-endpoint`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      return data;
+    });
+}
