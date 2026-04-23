@@ -1,0 +1,145 @@
+{
+  "theme": "light",
+  "archetype": "1_organic_earthy",
+  "mood": "Grounded, natural, pragmatic, readable outdoors. Inspired by clay, pond water, silver scales, and monsoon skies.",
+  "colors": {
+    "background": {
+      "page": "#F9FAFB",
+      "card": "#FFFFFF",
+      "chat_area": "#F3F4F1",
+      "header": "#FFFFFF"
+    },
+    "text": {
+      "primary": "#111827",
+      "secondary": "#4B5563",
+      "muted": "#6B7280",
+      "inverse": "#FFFFFF"
+    },
+    "primary": {
+      "DEFAULT": "#1B4332",
+      "hover": "#081C15",
+      "foreground": "#FFFFFF"
+    },
+    "accent": {
+      "DEFAULT": "#E67E22",
+      "hover": "#D35400",
+      "foreground": "#FFFFFF"
+    },
+    "chat_bubbles": {
+      "user": {
+        "bg": "#1B4332",
+        "text": "#FFFFFF"
+      },
+      "bot": {
+        "bg": "#FFFFFF",
+        "text": "#111827",
+        "border": "#E5E7EB"
+      }
+    },
+    "status": {
+      "rain_alert": "#0077B6",
+      "disease_warning": "#D90429",
+      "success": "#2D6A4F",
+      "market_sell": "#E67E22"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Manrope",
+      "body": "Work Sans",
+      "mono": "JetBrains Mono"
+    },
+    "hierarchy": {
+      "h1": "text-3xl sm:text-4xl font-black tracking-tight text-gray-900",
+      "h2": "text-2xl sm:text-3xl font-bold tracking-tight text-gray-900",
+      "h3": "text-xl font-bold text-gray-900",
+      "card_title": "text-lg font-semibold text-gray-900",
+      "body": "text-base font-medium leading-relaxed text-gray-700",
+      "small": "text-sm font-medium text-gray-500",
+      "chip": "text-sm font-bold uppercase tracking-wide"
+    }
+  },
+  "layout_and_spacing": {
+    "strategy": "Mobile-first, single unified vertical flow. High-density tap targets for farmers with calloused hands. Generous padding in cards.",
+    "container": "w-full max-w-3xl mx-auto px-4 sm:px-6 h-screen flex flex-col",
+    "header": "py-4 flex justify-between items-center border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-50",
+    "chat_window": "flex-1 overflow-y-auto py-6 space-y-6 scroll-smooth",
+    "input_area": "p-4 bg-white border-t border-gray-200 sticky bottom-0 z-40 pb-safe",
+    "cards": "bg-white p-5 sm:p-6 rounded-2xl border border-gray-100 shadow-[0_4px_20px_-4px_rgba(27,67,50,0.08)]",
+    "radius": {
+      "card": "rounded-2xl",
+      "button": "rounded-xl",
+      "chip": "rounded-full",
+      "chat_bubble_bot": "rounded-2xl rounded-tl-sm",
+      "chat_bubble_user": "rounded-2xl rounded-tr-sm"
+    }
+  },
+  "components": {
+    "action_chips": "Flex wrap container, gap-2. Chips: bg-white border border-gray-200 text-gray-700 hover:border-accent hover:text-accent transition-colors py-2 px-4 shadow-sm",
+    "weather_card": "Split layout: Left big temp, right conditions. Use accent color (rain_alert) for heavy rain warning banner at bottom of card.",
+    "feed_calculator": "Form inside bot message. Shadcn Input, large text size for numbers. Accent color calculate button.",
+    "market_price": "Data table list inside card. Items: Fish Name (left), Price (right). If price is up, show upward arrow in green. Includes 'Sell Now' recommendation chip.",
+    "diagnosis_selector": "Multi-select chip group for symptoms (e.g., 'Red Spots', 'Gasping at surface').",
+    "chat_input": "Relative wrapper. Input field with high padding-right. Absolute positioned send button (circle, bg-primary) on right."
+  },
+  "motion_and_interactions": {
+    "message_enter": "framer-motion: initial={{ opacity: 0, y: 10, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ duration: 0.3, ease: 'easeOut' }}",
+    "typing_indicator": "Three dots bouncing. Use colors.primary with opacity 60% for dots.",
+    "chip_stagger": "framer-motion: staggerChildren 0.05s on load.",
+    "hover_states": "Buttons and chips should translate-y-[-2px] with increased shadow on desktop, immediate active state bg-change on mobile."
+  },
+  "assets": {
+    "hero_backgrounds": [
+      {
+        "url": "https://images.pexels.com/photos/5786581/pexels-photo-5786581.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Drone view of rectangular shaped aquaculture ponds",
+        "category": "landing_hero_bg"
+      }
+    ],
+    "textures": [
+      {
+        "url": "https://images.unsplash.com/photo-1549627813-3a2531e6af42?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MTN8MHwxfHNlYXJjaHwyfHxncmVlbiUyMHdhdGVyJTIwYWxnYWUlMjB0ZXh0dXJlfGVufDB8fHx8MTc3NjkyODk2OHww&ixlib=rb-4.1.0&q=85",
+        "description": "Green pond water texture",
+        "category": "ui_accent_texture"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1603969560589-9dfb1cb6eb07?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwxfHxmaXNoaW5nJTIwbmV0JTIwdGV4dHVyZXxlbnwwfHx8fDE3NzY5Mjg5NjF8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Fishing net texture",
+        "category": "card_background_pattern"
+      }
+    ],
+    "portraits": [
+      {
+        "url": "https://images.pexels.com/photos/31983759/pexels-photo-31983759.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Indian farmer in green field",
+        "category": "testimonial_or_profile"
+      }
+    ]
+  },
+  "testing": {
+    "required_attributes": [
+      "data-testid"
+    ],
+    "examples": [
+      "data-testid='chat-input-field'",
+      "data-testid='send-message-button'",
+      "data-testid='quick-action-weather'",
+      "data-testid='quick-action-feed'",
+      "data-testid='feed-calc-submit'",
+      "data-testid='market-price-card'",
+      "data-testid='language-toggle'"
+    ]
+  },
+  "instructions_to_main_agent": [
+    "You are building Matsyavan - Fisherman Assistant Bot.",
+    "This is a chat-driven UI. The main view should look like a modern messaging app.",
+    "Use Manrope for all headings and Work Sans for body text.",
+    "Use framer-motion for smooth message appearance.",
+    "Use the color palette provided. Do not use generic purple or blue AI gradients. Use the deep forest green (#1B4332) and terracotta orange (#E67E22).",
+    "All interactive elements MUST have data-testid attributes.",
+    "The 5 sub-bots should be represented as quick action chips above the chat input.",
+    "When a user clicks 'Weather', the bot should reply with a formatted Weather Card component.",
+    "Do not use transparent headers over content; use bg-white/80 with backdrop-blur.",
+    "Use lucide-react for icons (e.g., CloudRain for weather, Fish for feed, TrendingUp for market, Stethoscope for diagnosis, HelpCircle for FAQ)."
+  ]
+}
