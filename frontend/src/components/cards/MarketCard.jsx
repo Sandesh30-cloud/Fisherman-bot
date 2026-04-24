@@ -70,9 +70,9 @@ export default function MarketCard({ data }) {
         <CheckCircle2 size={14} className="text-[color:var(--clay-dark)] shrink-0 mt-0.5" />
         <div className="text-[color:var(--clay-dark)] font-medium">{advisory}</div>
       </div>
-      <div className="px-5 py-2 text-[10px] font-mono text-[color:var(--muted)]">
+      {/* <div className="px-5 py-2 text-[10px] font-mono text-[color:var(--muted)]">
         {source_note} · {fetched_at?.slice(0, 10)}
-      </div>
+      </div> */}
     </div>
   );
 }
